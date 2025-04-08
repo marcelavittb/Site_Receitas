@@ -8,9 +8,7 @@ Esse é um site simples que fiz com HTML, CSS e JavaScript para cadastrar e visu
 
 - Adicionar novas receitas com imagem (ou sem).
 - Ver a lista de receitas cadastradas.
-- Excluir receitas que não quiser mais.
 - Receber uma mensagem de sucesso quando uma receita é cadastrada.
-- Voltar ao topo da página com um botão especial.
 - Usar o site no celular ou computador, já que ele é responsivo.
 
 ---
@@ -23,11 +21,9 @@ Esse é um site simples que fiz com HTML, CSS e JavaScript para cadastrar e visu
 
 ---
 
----
-
 ## ✍️ Sobre o projeto
 
-Fiz esse projeto como parte de um exercício de aprendizado. Quis algo leve, bonito e funcional, sem depender de frameworks ou ferramentas complicadas. A ideia é ir melhorando aos poucos e talvez até transformar isso num app futuramente. 😄
+Fizemos esse projeto como parte de um exercício da faculdade Unicesumar em Curitiba - PR. Quis algo leve, bonito e funcional, sem depender de frameworks ou ferramentas complicadas. A ideia é ir melhorando aos poucos e talvez até transformar isso num app futuramente. 😄
 
 ---
 
