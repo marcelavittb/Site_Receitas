@@ -1,84 +1,66 @@
-function exibirDetalhes(nome, ingredientes, modo) {
-    document.getElementById('modal-title').textContent = nome;
-    document.getElementById('modal-ingredientes').textContent = ingredientes;
-    document.getElementById('modal-modo').textContent = modo;
-    document.getElementById('modal').style.display = 'block';
-}
+// Animação de entrada
+window.addEventListener('load', () => {
+    document.querySelectorAll('.animar').forEach((el, i) => {
+        setTimeout(() => {
+            el.style.opacity = 1;
+            el.style.transform = 'translateY(0)';
+        }, 200 * i);
+    });
+});
 
-function fecharModal() {
-    document.getElementById('modal').style.display = 'none';
-}
+// Salvar receitas localmente e carregar
+document.addEventListener("DOMContentLoaded", () => {
+    const lista = document.getElementById("lista-receitas");
 
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('form');
-    const sucesso = document.createElement('div');
-    sucesso.id = "mensagem-sucesso";
-    sucesso.textContent = "Receita adicionada com sucesso!";
-    sucesso.style.display = "none";
-    form && form.appendChild(sucesso);
-
-    form && form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const nome = form.querySelector('input[name="nome"]').value.trim();
-        const ingredientes = form.querySelector('textarea[name="ingredientes"]').value.trim();
-        const modo = form.querySelector('textarea[name="modo"]').value.trim();
-        const imagemInput = form.querySelector('input[name="imagem"]');
-        const imagemArquivo = imagemInput.files[0];
-
-        if (!nome || !ingredientes || !modo) {
-            alert("Por favor, preencha todos os campos da receita.");
-            return;
-        }
-
-        function adicionarReceita(imagemSrc = '') {
-            const novaReceita = document.createElement("div");
-            novaReceita.className = "receita";
-            novaReceita.innerHTML = `
-                ${imagemSrc ? `<img src="${imagemSrc}" alt="Imagem da Receita" class="imagem-receita">` : ''}
-                <h3>${nome}</h3>
-                <p><strong>Ingredientes:</strong> ${ingredientes}</p>
-                <p><strong>Modo de preparo:</strong> ${modo}</p>
-                <button class="btn-excluir">Excluir</button>
+    // Carregar receitas do localStorage
+    if (lista) {
+        const receitas = JSON.parse(localStorage.getItem("receitas") || "[]");
+        receitas.forEach(receita => {
+            const nova = document.createElement("article");
+            nova.className = "receita animar";
+            nova.innerHTML = `
+                <img src="${receita.imagem}" alt="${receita.nome}">
+                <h3>${receita.nome}</h3>
+                <p>${receita.descricao}</p>
             `;
+            lista.appendChild(nova);
+        });
+    }
 
-            const lista = document.getElementById("lista-receitas");
-            lista.appendChild(novaReceita);
+    // Adicionar nova receita
+    const form = document.getElementById("form-receita");
+    if (form) {
+        form.addEventListener("submit", e => {
+            e.preventDefault();
+            const nome = document.getElementById("nome").value.trim();
+            const descricao = document.getElementById("descricao").value.trim();
+            const imagemInput = document.getElementById("imagem");
+            const arquivo = imagemInput.files[0];
 
-            novaReceita.querySelector(".btn-excluir").addEventListener("click", () => {
-                novaReceita.remove();
-            });
+            if (!nome || !descricao) return alert("Preencha todos os campos!");
 
-            sucesso.style.display = "block";
-            setTimeout(() => {
-                sucesso.style.display = "none";
-            }, 3000);
-
-            form.reset();
-        }
-
-        if (imagemArquivo) {
             const reader = new FileReader();
-            reader.onload = function (event) {
-                adicionarReceita(event.target.result);
+            reader.onload = () => {
+                const novaReceita = {
+                    nome,
+                    descricao,
+                    imagem: reader.result
+                };
+                const receitasSalvas = JSON.parse(localStorage.getItem("receitas") || "[]");
+                receitasSalvas.push(novaReceita);
+                localStorage.setItem("receitas", JSON.stringify(receitasSalvas));
+                alert("Receita adicionada com sucesso!");
+                window.location.href = "index.html";
             };
-            reader.readAsDataURL(imagemArquivo);
-        } else {
-            adicionarReceita();
-        }
-    });
-
-    // Botão voltar ao topo
-    const btnTopo = document.createElement("button");
-    btnTopo.id = "btnTopo";
-    btnTopo.textContent = "↑";
-    document.body.appendChild(btnTopo);
-
-    window.addEventListener("scroll", function () {
-        btnTopo.style.display = window.scrollY > 200 ? "block" : "none";
-    });
-
-    btnTopo.addEventListener("click", function () {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+            
+            if (arquivo) {
+                reader.readAsDataURL(arquivo);
+            } else {
+                novaReceita.imagem = "imagens/default.jpg"; // caso não tenha imagem
+                alert("Receita adicionada com sucesso!");
+                window.location.href = "index.html";
+            }
+            
+        });
+    }
 });

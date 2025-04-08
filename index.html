@@ -3,66 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Receitas</title>
+    <title>Receitas Deliciosas</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Cabeçalho -->
     <header>
-        <img src="imagens/logo.jpg" alt="Logo do site" class="logo-header">
-        <h1>Minhas Receitas Favoritas</h1>
+        <img src="imagens/logo.jpg" alt="Logo da Página" class="logo-header">
+        <h1>Receitas Deliciosas</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="adicionar.html">Adicionar Receita</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Navegação -->
-    <nav>
-        <ul>
-            <li><a href="#formulario-receita">Adicionar Receita</a></li>
-            <li><a href="#receitas">Ver Receitas</a></li>
-        </ul>
-    </nav>
-
-    <!-- Formulário de Receita -->
-    <section id="formulario-receita">
-        <h2>Adicione uma Nova Receita</h2>
-        <form>
-            <label for="nome">Nome da Receita:</label>
-            <input type="text" name="nome" required>
-
-            <label for="ingredientes">Ingredientes:</label>
-            <textarea name="ingredientes" rows="4" required></textarea>
-
-            <label for="modo">Modo de Preparo:</label>
-            <textarea name="modo" rows="4" required></textarea>
-
-            <label for="imagem">Imagem (opcional):</label>
-            <input type="file" name="imagem" accept="image/*">
-
-            <button type="submit">Adicionar Receita</button>
-        </form>
-    </section>
-
-    <!-- Seção de Receitas -->
     <section id="receitas">
-        <h2>Receitas Adicionadas</h2>
+        <h2>Receitas feitas por Helen e Marcela</h2>
         <div class="receitas-container" id="lista-receitas">
-            <!-- Receitas adicionadas vão aparecer aqui -->
+            <!-- Receitas fixas -->
+            <article class="receita animar">
+                <img src="imagens/bolo_chocolate.jpg" alt="Bolo de Chocolate">
+                <h3>Bolo de Chocolate</h3>
+                <p>Um delicioso bolo de chocolate fofo e saboroso.</p>
+            </article>
+            <article class="receita animar">
+                <img src="imagens/macarrao_carbonara.jpg" alt="Macarrão Carbonara">
+                <h3>Macarrão Carbonara</h3>
+                <p>Uma receita clássica italiana de macarrão cremoso.</p>
+            </article>
         </div>
     </section>
 
-    <!-- Modal (opcional, pode ser usado depois para mostrar detalhes) -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharModal()">&times;</span>
-            <h3 id="modal-title"></h3>
-            <p><strong>Ingredientes:</strong> <span id="modal-ingredientes"></span></p>
-            <p><strong>Modo de Preparo:</strong> <span id="modal-modo"></span></p>
-        </div>
-    </div>
-
-    <!-- Rodapé -->
     <footer>
-        <p>&copy; 2025 - Projeto de Página de Receitas</p>
+        <p>&copy; 2025 Página de Receitas. Todos os direitos reservados.</p>
     </footer>
 
     <script src="script.js"></script>
