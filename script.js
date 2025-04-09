@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Receita adicionada com sucesso!");
                 window.location.href = "index.html";
             };
-            
             if (arquivo) {
                 reader.readAsDataURL(arquivo);
             } else {
@@ -60,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Receita adicionada com sucesso!");
                 window.location.href = "index.html";
             }
-            
         });
     }
 });

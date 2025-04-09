@@ -6,7 +6,7 @@ Esse é um site simples que fiz com HTML, CSS e JavaScript para cadastrar e visu
 
 ## 💡 O que dá pra fazer no site?
 
-- Adicionar novas receitas com imagem (ou sem).
+- Adicionar novas receitas com imagem.
 - Ver a lista de receitas cadastradas.
 - Receber uma mensagem de sucesso quando uma receita é cadastrada.
 - Usar o site no celular ou computador, já que ele é responsivo.
